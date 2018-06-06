@@ -9,6 +9,8 @@ import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HomeComponent } from './home/home.component';
 import {PlayerService} from './services/player.service';
+import { HomePlayersComponent } from './home/home-players/home-players.component';
+import { HomeTeamComponent } from './home/home-team/home-team.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import {PlayerService} from './services/player.service';
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
-    HomeComponent
+    HomeComponent,
+    HomePlayersComponent,
+    HomeTeamComponent
   ],
   imports: [
     BrowserModule,

@@ -9,17 +9,10 @@ import { Player } from '../shared/player';
 })
 export class HomeComponent implements OnInit {
 
-  player = new Player();
+  player_attributes: String[] = ['pts', 'reb', 'ast', 'to', 'stl'];
 
-  constructor(private playerService: PlayerService) {
-    this.playerService.getPlayerByName('Andrew Wiggins')
-      .subscribe((data: Player) => this.player = {
-        player_name: data['player_name'],
-        player_id:  data['player_id']
-      });
+  constructor() {
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

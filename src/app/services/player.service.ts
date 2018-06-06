@@ -5,11 +5,15 @@ import { HttpClient } from '@angular/common/http';
 export class PlayerService {
 
   playerUrl = 'http://localhost:8080/api/player/';
-  playersUrl = 'api/players';
+  playersUrl = 'api/players/';
   constructor(private http: HttpClient) {}
 
   getPlayerByName(player_name: string) {
     return this.http.get(this.playerUrl + player_name);
+  }
+
+  getTopPlayersByAttribute(att: string, top: number) {
+    return this.http.get(this.playersUrl + att + '/' + top);
   }
 
 
