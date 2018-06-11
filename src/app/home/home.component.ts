@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PlayerService } from '../services/player.service';
-import { Player } from '../shared/player';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,10 +8,10 @@ import { Player } from '../shared/player';
 })
 export class HomeComponent implements OnInit {
 
-  player_attributes: String[] = ['pts', 'reb', 'ast', 'to', 'stl'];
-
-  constructor() {
+  constructor(private router: Router) {
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.router.navigate(['home', 'players']);
+  }
 }

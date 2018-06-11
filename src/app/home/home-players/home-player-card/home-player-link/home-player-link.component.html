@@ -1,0 +1,15 @@
+<div *ngIf="index === 0">
+  <li class="list-group-item leader">
+    <div class="playerName">
+      {{player.player_name}} {{player.team_ab}}</div>
+    <div class="value leaderValue">{{player[attribute]}}</div>
+  </li>
+</div>
+<div *ngIf = "index !== 0">
+  <li class="list-group-item">
+    <div class="playerName">
+         {{player.player_name}} {{player.team_ab}}</div>
+    <div class="value">{{player[attribute]}}</div>
+  </li>
+</div>
+

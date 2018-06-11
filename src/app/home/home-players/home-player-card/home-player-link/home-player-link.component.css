@@ -1,0 +1,14 @@
+.leader{
+  font-weight: 600;
+}
+.leaderValue{
+  font-size: 200%;
+  line-height: 60%;
+}
+.playerName{
+  float: left;
+}
+.value{
+  float: right;
+  width: 20%;
+}

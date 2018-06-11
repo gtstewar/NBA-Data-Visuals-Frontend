@@ -1,0 +1,12 @@
+<div class="col" *ngIf = "players.length > 0">
+  <div class="card text-center">
+    <div class="card-body">
+      <h1 class="card-header"> {{ attribute }} </h1>
+      <img [src]="'https://nba-players.herokuapp.com/players/' + players[0].player_name.split(' ')[1] + '/' + players[0].player_name.split(' ')[0]"  [id] = "attribute + '-card'"/>
+      <ul class="list-group list-group-flush">
+        <app-home-player-link *ngFor="let player of players; let i = index" [player] = "player" [index] = i [attribute]="attribute" >
+        </app-home-player-link>
+      </ul>
+    </div>
+  </div>
+</div>

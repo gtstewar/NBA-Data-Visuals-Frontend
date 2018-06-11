@@ -11,6 +11,10 @@ import { HomeComponent } from './home/home.component';
 import {PlayerService} from './services/player.service';
 import { HomePlayersComponent } from './home/home-players/home-players.component';
 import { HomeTeamComponent } from './home/home-team/home-team.component';
+import {AppRoutingModule} from './app-routing.module';
+import { HomePlayerLinkComponent } from './home/home-players/home-player-card/home-player-link/home-player-link.component';
+import { HomeTeamLinkComponent } from './home/home-team/home-team-link/home-team-link.component';
+import { HomePlayerCardComponent } from './home/home-players/home-player-card/home-player-card.component';
 
 @NgModule({
   declarations: [
@@ -20,12 +24,16 @@ import { HomeTeamComponent } from './home/home-team/home-team.component';
     SidebarComponent,
     HomeComponent,
     HomePlayersComponent,
-    HomeTeamComponent
+    HomeTeamComponent,
+    HomePlayerLinkComponent,
+    HomeTeamLinkComponent,
+    HomePlayerCardComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [PlayerService],
   bootstrap: [AppComponent]

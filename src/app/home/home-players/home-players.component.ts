@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Player} from '../../shared/player';
+import {PlayerGeneralStats} from '../../model/playerGeneralStats';
 import {PlayerService} from '../../services/player.service';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-home-players',
@@ -9,19 +10,25 @@ import {PlayerService} from '../../services/player.service';
 })
 export class HomePlayersComponent implements OnInit {
 
-  @Input()
-  attribute: string;
+  attributes: string[] = ['pts', 'reb', 'ast', 'stl', 'blk', 'blka', 'w', 'oreb', 'dreb', 'tov', 'plus_minus' ];
 
-  players: Player[];
+  attLists: {list: PlayerGeneralStats[], att: string}[] = [];
 
-  constructor(private playerService: PlayerService) { }
+  valid = false;
+
+  constructor(private playerService: PlayerService) {}
 
   ngOnInit() {
-    this.getTopFivePlayerByAttribute(this.attribute);
+    this.playerService.doneGettingGeneralStats.subscribe(
+      () => {
+        console.log(this.playerService.playerGeneralStats.length);
+        this.attLists = this.playerService.getTopPlayersByAttributes(this.attributes, 5);
+        this.valid = true;
+      });
   }
 
-  getTopFivePlayerByAttribute(att: string) {
-    this.playerService.getTopPlayersByAttribute(att, 5)
-      .subscribe((res: Response) => this.players = <Player []>res.json());
-  }
+  // getTopFivePlayerByAttribute(att: string) {
+  //   this.playerService.getTopPlayersByAttribute(att, 5)
+  //     .subscribe((res: Response) => this.players = <Player []>res.json());
+  // }
 }
