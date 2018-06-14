@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {PlayerGeneralStats} from '../../model/playerGeneralStats';
 import {PlayerService} from '../../services/player.service';
 import {HttpClient} from '@angular/common/http';
+import {Data} from '@angular/router';
 
 @Component({
   selector: 'app-home-players',
@@ -19,12 +20,15 @@ export class HomePlayersComponent implements OnInit {
   constructor(private playerService: PlayerService) {}
 
   ngOnInit() {
-    this.playerService.doneGettingGeneralStats.subscribe(
-      () => {
-        console.log(this.playerService.playerGeneralStats.length);
-        this.attLists = this.playerService.getTopPlayersByAttributes(this.attributes, 5);
-        this.valid = true;
-      });
+    this.playerService.getHomeScreenLists(this.attributes);
+    this.playerService.doneGettingHomeLists.subscribe(
+      (playerLists: {list: PlayerGeneralStats[], att: string}[]) => {
+        for (const list of playerLists) {
+          this.attLists.push(list);
+          this.valid = true;
+        }
+      }
+    );
   }
 
   // getTopFivePlayerByAttribute(att: string) {

@@ -1,12 +1,12 @@
 <div *ngIf="index === 0">
-  <li class="list-group-item leader">
+  <li class="list-group-item leader" [routerLink]="['/']">
     <div class="playerName">
       {{player.player_name}} {{player.team_ab}}</div>
     <div class="value leaderValue">{{player[attribute]}}</div>
   </li>
 </div>
 <div *ngIf = "index !== 0">
-  <li class="list-group-item">
+  <li class="list-group-item" [routerLink]="['/']">
     <div class="playerName">
          {{player.player_name}} {{player.team_ab}}</div>
     <div class="value">{{player[attribute]}}</div>

@@ -8,13 +8,13 @@ export class PlayerService {
   generalStatsFinished = new EventEmitter<{ list: PlayerGeneralStats[], attribute: string }>();
 
   playerUrl = 'http://localhost:8080/api/player/';
-  generalStatsByAttributeUrl = 'http://localhost:8080/api/players/top/';
+  homeScreenUrl = 'http://localhost:8080/api/players/gen/home/atts';
   allGeneralStatsUrl = 'http://localhost:8080/api/players/gen/all';
   playerGeneralStats: PlayerGeneralStats[] = [];
   doneGettingGeneralStats = new EventEmitter<void>();
+  doneGettingHomeLists = new EventEmitter<{list: PlayerGeneralStats[], att: string}[]>();
 
   constructor(private http: HttpClient) {
-    this.getAllGeneralStats();
   }
 
   getPlayerByName(player_name: string) {
@@ -42,6 +42,103 @@ export class PlayerService {
     }
     console.log(attributeLists);
     return attributeLists;
+  }
+
+  getHomeScreenLists(attributes: string[]) {
+    let attParam = '';
+    for (const att of attributes) {
+      attParam += att + ',';
+    }
+    attParam = attParam.slice(0, attParam.length - 1);
+    const playerLists: {list: PlayerGeneralStats[], att: string}[] = [];
+    let playerList: PlayerGeneralStats[] = [];
+    const playerResponse = this.http.get(this.homeScreenUrl, {params: {attributes: attParam}}).subscribe(
+      (statsList: Object) => {
+        let i = 0;
+        let k = 0;
+        while (statsList[i] != null) {
+          const attribute = attributes[i];
+          playerList = [];
+          k = 0;
+          while (statsList[i][k] != null) {
+            // console.log(i + '. ' + statsList[i]['player_name']);
+            playerList.push(new PlayerGeneralStats(
+              statsList[i][k]['player_name'],
+              statsList[i][k]['player']['player_id'],
+              statsList[i][k]['team_ab'],
+              statsList[i][k]['age'],
+              statsList[i][k]['gp'],
+              statsList[i][k]['w'],
+              statsList[i][k]['l'],
+              statsList[i][k]['win_pct'],
+              statsList[i][k]['min'],
+              statsList[i][k]['fgm'],
+              statsList[i][k]['fga'],
+              statsList[i][k]['fg_pct'],
+              statsList[i][k]['fg3m'],
+              statsList[i][k]['fg3a'],
+              statsList[i][k]['fg3_pct'],
+              statsList[i][k]['ftm'],
+              statsList[i][k]['fta'],
+              statsList[i][k]['ft_pct'],
+              statsList[i][k]['oreb'],
+              statsList[i][k]['dreb'],
+              statsList[i][k]['reb'],
+              statsList[i][k]['ast'],
+              statsList[i][k]['tov'],
+              statsList[i][k]['stl'],
+              statsList[i][k]['blk'],
+              statsList[i][k]['blka'],
+              statsList[i][k]['pf'],
+              statsList[i][k]['pfd'],
+              statsList[i][k]['pts'],
+              statsList[i][k]['plus_minus'],
+              statsList[i][k]['nba_fantasy_pts'],
+              statsList[i][k]['dd2'],
+              statsList[i][k]['td3'],
+              statsList[i][k]['gp_rank'],
+              statsList[i][k]['w_rank'],
+              statsList[i][k]['l_rank'],
+              statsList[i][k]['win_pct_rank'],
+              statsList[i][k]['min_rank'],
+              statsList[i][k]['fgm_rank'],
+              statsList[i][k]['fga_rank'],
+              statsList[i][k]['fg_pct_rank'],
+              statsList[i][k]['fg3m_rank'],
+              statsList[i][k]['fg3a_rank'],
+              statsList[i][k]['fg3_pct_rank'],
+              statsList[i][k]['ftm_rank'],
+              statsList[i][k]['fta_rank'],
+              statsList[i][k]['ft_pct_rank'],
+              statsList[i][k]['oreb_rank'],
+              statsList[i][k]['dreb_rank'],
+              statsList[i][k]['reb_rank'],
+              statsList[i][k]['ast_rank'],
+              statsList[i][k]['tov_rank'],
+              statsList[i][k]['stl_rank'],
+              statsList[i][k]['blk_rank'],
+              statsList[i][k]['blka_rank'],
+              statsList[i][k]['pf_rank'],
+              statsList[i][k]['pfd_rank'],
+              statsList[i][k]['pts_rank'],
+              statsList[i][k]['plus_minus_rank'],
+              statsList[i][k]['nba_fantasy_pts_rank'],
+              statsList[i][k]['dd2_rank'],
+              statsList[i][k]['td3_rank']
+            ))
+            ;
+            k++;
+
+
+          }
+          console.log(playerList);
+          playerLists.push({list: playerList, att: attribute});
+          i++;
+        }
+        this.doneGettingHomeLists.emit(playerLists);
+        return playerLists;
+      }
+    );
   }
 
   getAllGeneralStats() {
