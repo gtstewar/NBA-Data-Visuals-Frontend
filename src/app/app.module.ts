@@ -15,6 +15,7 @@ import {AppRoutingModule} from './app-routing.module';
 import { HomePlayerLinkComponent } from './home/home-players/home-player-card/home-player-link/home-player-link.component';
 import { HomeTeamLinkComponent } from './home/home-team/home-team-link/home-team-link.component';
 import { HomePlayerCardComponent } from './home/home-players/home-player-card/home-player-card.component';
+import { HomeTeamCardComponent } from './home/home-team/home-team-card/home-team-card.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { HomePlayerCardComponent } from './home/home-players/home-player-card/ho
     HomeTeamComponent,
     HomePlayerLinkComponent,
     HomeTeamLinkComponent,
-    HomePlayerCardComponent
+    HomePlayerCardComponent,
+    HomeTeamCardComponent
   ],
   imports: [
     BrowserModule,

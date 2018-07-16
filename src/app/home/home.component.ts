@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {PlayerService} from '../services/player.service';
 
 @Component({
   selector: 'app-home',

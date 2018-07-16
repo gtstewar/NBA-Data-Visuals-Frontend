@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {PlayerGeneralStats} from '../../model/playerGeneralStats';
 import {PlayerService} from '../../services/player.service';
 import {HttpClient} from '@angular/common/http';
-import {Data} from '@angular/router';
+import {ActivatedRoute, ActivatedRouteSnapshot, Data, Router} from '@angular/router';
 
 @Component({
   selector: 'app-home-players',
@@ -11,28 +11,18 @@ import {Data} from '@angular/router';
 })
 export class HomePlayersComponent implements OnInit {
 
-  attributes: string[] = ['pts', 'reb', 'ast', 'stl', 'blk', 'blka', 'w', 'oreb', 'dreb', 'tov', 'plus_minus' ];
+  attributes: string[];
 
-  attLists: {list: PlayerGeneralStats[], att: string}[] = [];
+  playerLists: PlayerGeneralStats[][];
 
-  valid = false;
+  public valid = false;
 
-  constructor(private playerService: PlayerService) {}
-
-  ngOnInit() {
-    this.playerService.getHomeScreenLists(this.attributes);
-    this.playerService.doneGettingHomeLists.subscribe(
-      (playerLists: {list: PlayerGeneralStats[], att: string}[]) => {
-        for (const list of playerLists) {
-          this.attLists.push(list);
-          this.valid = true;
-        }
-      }
-    );
+  constructor(private playerService: PlayerService, private activeRoute: ActivatedRoute, private router: Router) {
   }
 
-  // getTopFivePlayerByAttribute(att: string) {
-  //   this.playerService.getTopPlayersByAttribute(att, 5)
-  //     .subscribe((res: Response) => this.players = <Player []>res.json());
-  // }
+  ngOnInit() {
+    this.attributes = this.playerService.attributes;
+    const route = this.activeRoute.snapshot;
+    this.playerLists = route.data['playerLists'];
+  }
 }

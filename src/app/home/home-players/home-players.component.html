@@ -1,7 +1,6 @@
-<div class = "row" *ngIf = "valid">
-  <div *ngFor="let list of attLists">
-    <app-home-player-card [playerInfo] = "list"></app-home-player-card>
+<div class = "row">
+  <div *ngFor="let list of playerLists; let i = index">
+    <app-home-player-card [players]="list" [attribute]="attributes[i]"></app-home-player-card>
   </div>
 </div>
-<div *ngIf="!valid">LOADING</div>
 

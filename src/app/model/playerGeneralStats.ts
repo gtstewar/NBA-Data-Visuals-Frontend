@@ -1,6 +1,9 @@
+import {Player} from './player';
+
 export class PlayerGeneralStats {
+  public id: number;
+  public player: Player;
   public player_name: string;
-  public player_id: number;
   public team_ab: string;
   public age: number;
   public gp: number;
@@ -32,38 +35,11 @@ export class PlayerGeneralStats {
   public nba_fantasy_pts: number;
   public dd2: number;
   public td3: number;
-  public gp_rank: number;
-  public w_rank: number;
-  public l_rank: number;
-  public w_pct_rank: number;
-  public min_rank: number;
-  public fgm_rank: number;
-  public fga_rank: number;
-  public fg_pct_rank: number;
-  public fg3m_rank: number;
-  public fg3a_rank: number;
-  public fg3_pct_rank: number;
-  public ftm_rank: number;
-  public fta_rank: number;
-  public ft_pct_rank: number;
-  public oreb_rank: number;
-  public dreb_rank: number;
-  public reb_rank: number;
-  public ast_rank: number;
-  public tov_rank: number;
-  public stl_rank: number;
-  public blk_rank: number;
-  public blka_rank: number;
-  public pf_rank: number;
-  public pfd_rank: number;
-  public pts_rank: number;
-  public plus_minus_rank: number;
-  public nba_fantasy_pts_rank: number;
-  public dd2_rank: number;
-  public td3_rank: number;
 
-  constructor(player_name: string,
-              player_id: number,
+  constructor(
+              id: number,
+              player: Player,
+              player_name: string,
               team_ab: string,
               age: number,
               gp: number,
@@ -94,39 +70,11 @@ export class PlayerGeneralStats {
               plus_minus: number,
               nba_fantasy_pts: number,
               dd2: number,
-              td3: number,
-              gp_rank: number,
-              w_rank: number,
-              l_rank: number,
-              w_pct_rank: number,
-              min_rank: number,
-              fgm_rank: number,
-              fga_rank: number,
-              fg_pct_rank: number,
-              fg3m_rank: number,
-              fg3a_rank: number,
-              fg3_pct_rank: number,
-              ftm_rank: number,
-              fta_rank: number,
-              ft_pct_rank: number,
-              oreb_rank: number,
-              dreb_rank: number,
-              reb_rank: number,
-              ast_rank: number,
-              tov_rank: number,
-              stl_rank: number,
-              blk_rank: number,
-              blka_rank: number,
-              pf_rank: number,
-              pfd_rank: number,
-              pts_rank: number,
-              plus_minus_rank: number,
-              nba_fantasy_pts_rank: number,
-              dd2_rank: number,
-              td3_rank: number
+              td3: number
   ) {
+    this.id = id;
+    this.player = player;
     this.player_name = player_name;
-    this.player_id = player_id;
     this.team_ab = team_ab;
     this.age = age;
     this.gp = gp;
@@ -158,34 +106,5 @@ export class PlayerGeneralStats {
     this.nba_fantasy_pts = nba_fantasy_pts;
     this.dd2 = dd2;
     this.td3 = td3;
-    this.gp_rank = gp_rank;
-    this.w_rank = w_rank;
-    this.l_rank = l_rank;
-    this.w_pct_rank = w_pct_rank;
-    this.min_rank = min_rank;
-    this.fgm_rank = fgm_rank;
-    this.fga_rank = fga_rank;
-    this.fg_pct_rank = fg_pct_rank;
-    this.fg3m_rank = fg3m_rank;
-    this.fg3a_rank = fg3a_rank;
-    this.fg3_pct_rank = fg3_pct_rank;
-    this.ftm_rank = ftm_rank;
-    this.fta_rank = fta_rank;
-    this.ft_pct_rank = ft_pct_rank;
-    this.oreb_rank = oreb_rank;
-    this.dreb_rank = dreb_rank;
-    this.reb_rank = reb_rank;
-    this.ast_rank = ast_rank;
-    this.tov_rank = tov_rank;
-    this.stl_rank = stl_rank;
-    this.blk_rank = blk_rank;
-    this.blka_rank = blka_rank;
-    this.pf_rank = pf_rank;
-    this.pfd_rank = pfd_rank;
-    this.pts_rank = pts_rank;
-    this.plus_minus_rank = plus_minus_rank;
-    this.nba_fantasy_pts_rank = nba_fantasy_pts_rank;
-    this.dd2_rank = dd2_rank;
-    this.td3_rank = td3_rank;
   }
 }

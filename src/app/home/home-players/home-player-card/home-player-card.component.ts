@@ -13,14 +13,15 @@ export class HomePlayerCardComponent implements OnInit {
   @Input()
   playerInfo: {list: PlayerGeneralStats[], att: string};
 
-  players: PlayerGeneralStats[] = [];
+  @Input()
+  players: PlayerGeneralStats[];
+  @Input()
   attribute: string;
 
   constructor() { }
 
   ngOnInit() {
-   this.players = this.playerInfo['list'];
-   this.attribute = this.playerInfo['att'];
+    console.log(this.attribute);
   }
 
 }
